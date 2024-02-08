@@ -28,28 +28,10 @@ export const Single = props => {
 
 						<h2>Logueate para ver mas opciones de contenido</h2>
 
-						<div className="butons">
-
-							<Link to="/home">
-
-								<button type="button" className="btn btn-primary singup">Create una cuenta</button>
-
-							</Link>
-
-							<Link to="/demo">
-
-								<button type="button" className="btn btn-primary singup">Inicia sesion</button>
-
-							</Link>
-
-						</div>
-
 					</div>
 
 				</>
-
 			}
-
 		</>
 	);
 };

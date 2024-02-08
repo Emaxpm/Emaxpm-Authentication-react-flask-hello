@@ -20,7 +20,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
@@ -53,25 +52,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 
 					const data = await response.json();
-					alert("usuario registrado")
 					console.log("respuesta al intentar un new user:", data);
 
 				} catch (error) {
 					console.log("Error:", error);
 				}
 			},
-
-			// test: async () => {
-			// 	try {
-
-			// 		let response = await fetch(apiUrl + "/test")
-			// 		let data = await response.json()
-			// 		alert(data)
-
-			// 	} catch (e) {
-			// 		console.error(e)
-			// 	}
-			// },
 
 			privateRoute: async () => {
 				try {
@@ -101,7 +87,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			// actions.js
 			logIn: async (newLogIn) => {
 				try {
 					let result = await fetch(apiUrl + "/login", {
@@ -114,8 +99,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const data = await result.json();
 					console.log("respuesta al intentar iniciar sesion:", data);
-
-					// Utiliza data.token en lugar de result.access_token
 					localStorage.setItem("token", data.token);
 					setStore({ loggedUserId: data.id });
 					return data;
@@ -136,7 +119,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-
 		}
 	};
 };

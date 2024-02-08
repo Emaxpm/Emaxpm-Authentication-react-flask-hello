@@ -18,15 +18,6 @@ jwt = JWTManager
 
 CORS(api)
 
-
-#app = Flask(__name__)
-
-# Ruta de prueba para verificar la conexión
-
-# @api.route('/test')
-# def test():
-#     return jsonify({"msg": "funciona"}), 200
-
 @api.route('/sign', methods=['POST'])
 def create_one_user():
     try:
@@ -40,15 +31,7 @@ def create_one_user():
             
         raw_password = body.get('password')
         password_hash = bcrypt.generate_password_hash(raw_password).decode('utf-8')
-
-        # date = datetime.strptime(body["date"], "%Y-%m-%d")
-    # except (ValueError, KeyError):
-    #     return jsonify({"error": "Invalid or missing date format. Please use YYYY-MM-DD."}), 400
-
-    
-    # print(body)
-
-    
+  
         new_user = User(
             full_name=body.get("fullName"),
             email=body.get("email"),
@@ -57,7 +40,6 @@ def create_one_user():
             country=body.get("country"),
             phone=body.get("phone"),
             address=body.get("address"),
-            #date=date,
         )
 
         db.session.add(new_user)
@@ -69,25 +51,6 @@ def create_one_user():
         current_app.logger.error(f"Error al crear usuario: {str(e)}")
 
         return jsonify({"error": "Ocurrió un error al procesar la solicitud"}), 500
-
-    # try:
-        
-
-    #     ok_to_share = {
-    #         "full_name": body["fullName"],  # Corregido aquí
-    #         "email": body["email"],
-    #         "user_name": body["userName"],
-    #         "country": body["country"],
-    #         "phone": body["phone"],
-    #         "address": body["address"],
-    #         #"date": date.strftime('%Y-%m-%d'),
-    #     }
-
-        
-    # except Exception as e:
-    #     db.session.rollback()
-    #     api.logger.error(f"Error creating user: {str(e)}")
-    #     return jsonify({"error": "Failed to create user. Please try again later."}), 500
     
 @api.route("/login", methods=['POST'])
 def login():
@@ -100,9 +63,6 @@ def login():
 
         email = data.get('email')
         password = data.get('password')
-
-        # if not email or password:
-        #     return jsonify({"error": "falto algun dato"}), 400
         
         user = User.query.filter_by(email=email).first()
 
